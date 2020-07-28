@@ -1,0 +1,62 @@
+{% extends "layout1.html" %}
+
+{% block content %}
+
+
+        <article class="media content-section">
+
+          <div class="media-body">
+
+            
+
+            <h2><a class="article-title" href="#"><b><u>Data preprocessing</u></b></a></h2>
+            <p class="article-content">Each image in the Flickr8k dataset is provided with a unique id and consists of 5 captions describing the image. In data preprocessing we perform basic data cleaning which mainly includes lowercasing all the words ,  removing special symbols and punctuations and eliminating all the words consisting of numbers. We create a vocabulary which consists of all the unique possible words from the dataset. Refining the vocabulary and reducing the size of the unique words was done to increase the occurrences of the words which are more likely to occur or which are common. We then set a threshold considering the words which have been repeated a fixed number of times greater than or equal to the threshold.We formulate a dictionary of key-value pairs whose keys are the image ids and the values are a list of their respective captions. The contents of this dictionary are then saved as descriptions.</p>
+          </div>
+
+        </article>
+
+   
+        <article class="media content-section">
+
+          <div class="media-body">
+
+            
+
+            <h2><a class="article-title" href="#"><b><u>Feature Extraction</u></b></a></h2>
+            <p class="article-content">Here, we obtain the features of the images from the Flickr8k dataset where we need to convert every image into a fixed sized vector which can then be fed as input to the neural network.  This is done by feeding the image to a Convolutional Neural Network Model. The size of the image is standardized to 299 x 299. We have used popular pre-defined CNN models such as InceptionV3 and ResnetV2. However, we do not classify the image yet. Instead we get a fixed-length informative vector for each image by removing the last classifying layer from the model. We then extract a 2048 length vector for every image and save all the extracted features into a pickle (.pkl) file</p>
+          </div>
+
+        </article>
+
+
+
+        <article class="media content-section">
+
+          <div class="media-body">
+
+            
+
+            <h2><a class="article-title" href="#"><b><u>Model Definition</u></b></a></h2>
+            <p class="article-content">In this step, the deep learning model is created using various combinations of different layers. The models have two input layers - one for the image features and another for the previous caption (tokenized). Different layers like Fully Connected layer (Dense layer), Dropout layer, LSTM, GRU and Embedding layers were used. An additional Attention layer was used for few of the models implemented. Different combinations of LSTM, GRU and Attention layers were implemented and evaluated. These different combinations were added either directly to the embedded captions or after concatenating both the inputs.All captions in the dataset are processed using the tokenizer. The tokenized captions and the features of the corresponding image are used as inputs to train the model. The model is trained for several epochs and in every epoch, the model weights are updated and is tested on the test dataset to calculate the loss and accuracy. The updated model is saved after every epoch.</p>
+          </div>
+
+        </article>
+
+
+
+
+        <article class="media content-section">
+
+          <div class="media-body">
+
+            
+
+            <h2><a class="article-title" href="#"><b><u>Model Evaluation</u></b></a></h2>
+            <p class="article-content">The performance of various deep learning models is tested using evaluation metrics to perceive their accuracy in numbers by using the weights generated in the model definition stage. Here, evaluation metrics such as BLUE, METEOR, ROUGE, CIDEr, SPICE are implemented. The model is evaluated after each epoch and the best results are considered. The model generates the captions for the test images and the captions are compared with the pre-defined captions in the dataset and the accuracy is evaluated. The pre-processed captions are tokenized by encoding them and then saving it. Thus, a statistical comparison of the efficiency of every model can be established. </p>
+          </div>
+
+        </article>
+
+    
+
+{% endblock content %}

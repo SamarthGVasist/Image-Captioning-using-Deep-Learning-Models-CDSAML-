@@ -1,0 +1,48 @@
+{% extends "layout1.html" %}
+
+{% block content %}
+
+
+
+<article class="media content-section">
+
+          <div class="media-body">
+
+            
+
+            <h2><a class="article-title" href="#"><b><u>CAPSTYLE</u></b></a></h2>
+
+<div class="fill">
+
+<form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+
+
+ <p>
+    <strong><span id="hel">Files:</span></strong><br>
+    
+
+    <div class="file-upload">
+  <div class="file-select">
+    <div class="file-select-button" id="fileName">Choose File</div>
+    <div class="file-select-name" id="noFile"</div> 
+    <input id="file-picker" type="file" class="form-control form-control-lg" name="file" accept="image/*" multiple>
+    <label for="file">Select a File to upload</label>
+   </div>
+</div>
+
+   
+       
+
+    <div id="msg"></div>
+     <div class="wrapper">
+   <input type="submit" class="btn btn-outline-info" value="Upload" id="upload-button">
+    </div>
+</p>
+</div>
+</form>
+
+</div>
+</DIV>
+</article>
+
+{% endblock content %}
